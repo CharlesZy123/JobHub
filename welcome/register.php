@@ -14,9 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $sql = "INSERT INTO users (firstname, lastname, email, contact, username, password) VALUES ('$fname', '$lname', '$email', '$contact', '$username', '$password')";
 
    if ($conn->query($sql) === TRUE) {
-      header("Location: login");
+      $message = base64_encode('success~Account successfully registered!');
+      header("Location: login?m=".$message);
    } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+      $message = base64_encode('danger~Something went wrong!');
+      header("Location: register?m=".$message);
    }
 
    $conn->close();
@@ -66,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                               </div>
                            </div>
                            <div class="input-group mb-3">
-                              <input type="text" class="form-control" placeholder="Username" required>
+                              <input type="text" class="form-control" placeholder="Username" name="username" required>
                               <div class="input-group-append">
                                  <div class="input-group-text">
                                     <span class="fas fa-user-secret"></span>
