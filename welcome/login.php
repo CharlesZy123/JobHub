@@ -12,7 +12,7 @@
                   </div>
                   <div class="card card-outline card-primary">
                      <div class="card-body">
-                        <p class="login-box-msg">Sign in to start hunting some jobs!</p>
+                        <p class="login-box-msg">Sign in to start hunting your desired job!</p>
                         <form action="" method="post">
                            <div class="input-group mb-3">
                               <input type="email" class="form-control" placeholder="Email">

@@ -36,7 +36,7 @@
                </p>
             </div>
             <div class="credits">
-               Designed by <a href="#">Charles Fonzy Varquez</a>
+               Designed by <a href="#">Charles Fonzy</a>
             </div>
          </div>
       </div>

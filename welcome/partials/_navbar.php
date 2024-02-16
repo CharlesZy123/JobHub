@@ -1,11 +1,11 @@
 <?php
 function echoActiveClass($requestUri)
 {
-    $current_page = basename($_SERVER['REQUEST_URI']);
+   $current_page = basename($_SERVER['REQUEST_URI']);
 
-    if ($current_page == $requestUri) {
-        echo 'active';
-    }
+   if ($current_page == $requestUri) {
+      echo 'active';
+   }
 }
 ?>
 

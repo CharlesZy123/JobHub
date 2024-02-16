@@ -5,7 +5,7 @@
    <meta charset="utf-8">
    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-   <title>Welcome to Job Hunt</title>
+   <title>Job Hunt | <?php if(basename($_SERVER['REQUEST_URI']) == "index"){ echo 'Welcome'; } else { echo ucfirst(basename($_SERVER['REQUEST_URI'])); }?></title>
    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
    <!-- Font Awesome -->

@@ -12,7 +12,7 @@
                            <div>
                               <h3>Job <span class="color-b">Hunt</span></h3>
                               <p class="lead mb-5">San Isidro, Tomas Oppus Southern Leyte<br>
-                                 Phone: 09052986495
+                                 Phone: 09052986495 <!-- Textmate ta hahaha -->
                               </p>
                            </div>
                         </div>

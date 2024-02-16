@@ -1,3 +1,5 @@
+# Ayaw ni nnjo edita ha
+
 # mod_404 starts here
 ErrorDocument 404 /not-found-page.html
 
