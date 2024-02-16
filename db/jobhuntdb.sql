@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2024 at 07:20 AM
+-- Generation Time: Feb 16, 2024 at 09:55 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -29,10 +29,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `registered` (
   `id` int(11) NOT NULL,
-  `system_id` int(11) NOT NULL,
+  `system_id` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `registered`
+--
+
+INSERT INTO `registered` (`id`, `system_id`, `user_id`, `created_at`) VALUES
+(1, '1', 1, '2024-02-16 06:46:59'),
+(2, '2', 1, '2024-02-16 06:46:59');
 
 -- --------------------------------------------------------
 
@@ -51,11 +59,11 @@ CREATE TABLE `systems` (
 --
 
 INSERT INTO `systems` (`id`, `name`, `create_at`) VALUES
-(1, 'E-Cloth Rider', '2024-02-16 06:18:46'),
-(2, 'Seafair Employee', '2024-02-16 06:18:46'),
-(3, 'Real Estate Employee', '2024-02-16 06:19:32'),
-(4, 'PISO Employee', '2024-02-16 06:19:32'),
-(5, 'Hypebeast Employee', '2024-02-16 06:20:07');
+(1, 'E-Cloth Rider', '2024-02-15 22:18:46'),
+(2, 'Seafair Employee', '2024-02-15 22:18:46'),
+(3, 'Real Estate Employee', '2024-02-15 22:19:32'),
+(4, 'PISO Employee', '2024-02-15 22:19:32'),
+(5, 'Hypebeast Employee', '2024-02-15 22:20:07');
 
 -- --------------------------------------------------------
 
@@ -80,8 +88,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `firstname`, `lastname`, `email`, `contact`, `password`, `role`, `create_at`) VALUES
-(1, 'Lonely', 'Charles Fonzy', 'Varquez', 'varquez123@gmail.com', '09052986495', '$2y$10$g5hnxP5geYT4pAN/.L1dXuQaakzutuIy90ptqVAIsOIXUPmXTjXcy', 0, '2024-02-16 06:08:08'),
-(2, 'Hayyst', 'Adik', 'Sayo', 'asd@gmail.com', '09052986495', '$2y$10$dDXlKcxJVLHiThgck.axq.32pSHTS02gKHpLwF.7nVNqeOQvT.JqC', 0, '2024-02-16 06:08:08');
+(1, 'Mr. Lonely', 'Charles Fonzy', 'Varquez', 'varzy2305@gmail.com', '09052986495', '$2y$10$es9ViRbZqmBfKfZ4Z/XfUOT0HCtpPWfLNIDjMoA0A1iQ0SmGqnQIK', 1, '2024-02-16 06:52:40');
 
 --
 -- Indexes for dumped tables
@@ -113,7 +120,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `registered`
 --
 ALTER TABLE `registered`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `systems`
@@ -125,7 +132,7 @@ ALTER TABLE `systems`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
