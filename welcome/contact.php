@@ -1,5 +1,11 @@
-<?php include('partials/_header.php'); ?>
-<?php include('partials/_navbar.php'); ?>
+<?php
+include('partials/_header.php');
+include('partials/_navbar.php');
+if (isset($_SESSION['user_id'])) {
+   header("Location: ../users/dashboard.php");
+}
+?>
+
 <div class="content-wrapper">
    <main id="main">
       <section class="content section-t8">

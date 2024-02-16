@@ -18,7 +18,7 @@
             <div class="socials-a">
                <ul class="list-inline">
                   <li class="list-inline-item">
-                     <a href="#">
+                     <a href="https://www.facebook.com/charlesfonzy.cahapay">
                         <i class="bi bi-facebook" aria-hidden="true"></i>
                      </a>
                   </li>
@@ -56,8 +56,8 @@
 <script src="../assets/adminlte/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->
 <script src="../assets/adminlte/plugins/toastr/toastr.min.js"></script>
-<!-- Template Main JS File -->
-<!-- <script src="../assets/js/main.js"></script> -->
+<!-- AdminLTE App -->
+<script src="../assets/adminlte/dist/js/adminlte.min.js"></script>
 <script>
    $(function() {
       <?php

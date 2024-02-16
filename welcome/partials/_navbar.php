@@ -16,27 +16,35 @@ function echoActiveClass($requestUri)
          <span></span>
          <span></span>
       </button>
-      <a class="navbar-brand text-brand" href="index">Job <span class="color-b">Hunt</span></a>
+      <a class="h3" href="../index.php">Job <span class="color-b">Hunt</span></a>
 
       <div class="navbar-collapse collapse" style="justify-content: right;" id="navbarDefault">
          <ul class="navbar-nav ml-auto">
-            <li class="nav-item pl-2 <?php echoActiveClass('index'); ?>">
-               <a class="nav-link" href="index">Home</a>
-            </li>
+            <?php if (!isset($_SESSION['user_id'])) { ?>
+               <li class="nav-item pl-2 <?php echoActiveClass('index'); ?>">
+                  <a class="nav-link" href="index">Home</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link pl-2 <?php echoActiveClass('about'); ?>" href="about">About</a>
+               </li>
 
-            <li class="nav-item">
-               <a class="nav-link pl-2 <?php echoActiveClass('about'); ?>" href="about">About</a>
-            </li>
-
-            <li class="nav-item">
-               <a class="nav-link pl-2 <?php echoActiveClass('contact'); ?>" href="contact">Contact</a>
-            </li>
-            <li class="nav-item">
-               <a class="nav-link pl-2 <?php echoActiveClass('login'); ?>" href="login">Login</a>
-            </li>
-            <li class="nav-item">
-               <a class="nav-link pl-2 <?php echoActiveClass('register'); ?>" href="register">Register</a>
-            </li>
+               <li class="nav-item">
+                  <a class="nav-link pl-2 <?php echoActiveClass('contact'); ?>" href="contact">Contact</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link pl-2 <?php echoActiveClass('login'); ?>" href="login">Login</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link pl-2 <?php echoActiveClass('register'); ?>" href="register">Register</a>
+               </li>
+            <?php } else { ?>
+               <li class="nav-item">
+                  <a class="nav-link pl-2 <?php echoActiveClass('dashboard'); ?>" href="../users/dashboard">Home</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link pl-2" href="../welcome/logout">Logout <i class="fas fa-power-off"></i></a>
+               </li>
+            <?php } ?>
          </ul>
       </div>
    </div>

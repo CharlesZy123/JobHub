@@ -1,5 +1,51 @@
 <?php include('partials/_header.php'); ?>
 <?php include('partials/_navbar.php'); ?>
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+   require('../db/dbconn.php');
+
+   $usernameOrEmail = $_POST['email'];
+   $password = $_POST['password'];
+
+   if (empty($usernameOrEmail) || empty($password)) {
+      $message = base64_encode('danger~Please enter both username/email and password.');
+      header("Location: login?m=" . $message);
+      exit();
+   }
+
+   $query = "SELECT * FROM users WHERE username = '$usernameOrEmail' OR email = '$usernameOrEmail'";
+   $result = $conn->query($query);
+
+   if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+
+      if (password_verify($password, $row['password'])) {
+         session_start();
+         $_SESSION['user_id'] = $row['id'];
+         $_SESSION['username'] = $row['username'];
+
+         $message = base64_encode('success~Login successful!');
+         header("Location: ../users/dashboard?m=" . $message);
+         exit();
+      } else {
+         $message = base64_encode('danger~Incorrect password.');
+         header("Location: login?m=" . $message);
+         exit();
+      }
+   } else {
+      $message = base64_encode('danger~User not found.');
+      header("Location: login?m=" . $message);
+      exit();
+   }
+
+   $conn->close();
+}
+
+if(isset($_SESSION['user_id'])){
+   header("Location: ../users/dashboard.php");
+}
+?>
+
 <div class="content-wrapper">
    <main id="main">
       <section class="content section-t8">
@@ -15,7 +61,7 @@
                         <p class="login-box-msg">Sign in to start hunting your desired job!</p>
                         <form action="" method="post">
                            <div class="input-group mb-3">
-                              <input type="email" class="form-control" placeholder="Email">
+                              <input type="text" class="form-control" placeholder="Email or username" name="email">
                               <div class="input-group-append">
                                  <div class="input-group-text">
                                     <span class="fas fa-envelope"></span>
@@ -23,7 +69,7 @@
                               </div>
                            </div>
                            <div class="input-group mb-3">
-                              <input type="password" class="form-control" placeholder="Password">
+                              <input type="password" class="form-control" placeholder="Password" name="password">
                               <div class="input-group-append">
                                  <div class="input-group-text">
                                     <span class="fas fa-lock"></span>

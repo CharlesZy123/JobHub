@@ -1,6 +1,7 @@
-<?php include('partials/_header.php'); ?>
-<?php include('partials/_navbar.php'); ?>
 <?php
+include('partials/_header.php');
+include('partials/_navbar.php');
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    require('../db/dbconn.php');
 
@@ -13,15 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
    $employeeTypes = isset($_POST['employee_type']) ? $_POST['employee_type'] : [];
 
-   $sql = "INSERT INTO users (firstname, lastname, email, contact, username, password) 
-            VALUES ('$fname', '$lname', '$email', '$contact', '$username', '$password')";
+   $sql = "INSERT INTO users (firstname, lastname, email, contact, username, password, role) VALUES ('$fname', '$lname', '$email', '$contact', '$username', '$password', 1)";
 
    if ($conn->query($sql) === TRUE) {
       $userId = $conn->insert_id;
 
       foreach ($employeeTypes as $employeeType) {
-         $insertRegisteredSql = "INSERT INTO registered (user_id, system_id) 
-                                    VALUES ('$userId', '$employeeType')";
+         $insertRegisteredSql = "INSERT INTO registered (user_id, system_id) VALUES ('$userId', '$employeeType')";
          $conn->query($insertRegisteredSql);
       }
 
@@ -33,6 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    }
 
    $conn->close();
+}
+
+if(isset($_SESSION['user_id'])){
+   header("Location: ../users/dashboard.php");
 }
 ?>
 <div class="content-wrapper">
