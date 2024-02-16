@@ -1,5 +1,27 @@
 <?php include('partials/_header.php'); ?>
 <?php include('partials/_navbar.php'); ?>
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+   require('../db/dbconn.php');
+
+   $fname = $_POST['fname'];
+   $lname = $_POST['lname'];
+   $email = $_POST['email'];
+   $contact = $_POST['contact'];
+   $username = $_POST['username'];
+   $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+   $sql = "INSERT INTO users (firstname, lastname, email, contact, username, password) VALUES ('$fname', '$lname', '$email', '$contact', '$username', '$password')";
+
+   if ($conn->query($sql) === TRUE) {
+      header( "Location: login" );
+   } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+   }
+
+   $conn->close();
+}
+?>
 <div class="content-wrapper">
    <main id="main">
       <section class="content section-t8">
