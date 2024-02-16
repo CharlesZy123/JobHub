@@ -11,14 +11,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $username = $_POST['username'];
    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-   $sql = "INSERT INTO users (firstname, lastname, email, contact, username, password) VALUES ('$fname', '$lname', '$email', '$contact', '$username', '$password')";
+   $employeeTypes = isset($_POST['employee_type']) ? $_POST['employee_type'] : [];
+
+   $sql = "INSERT INTO users (firstname, lastname, email, contact, username, password) 
+            VALUES ('$fname', '$lname', '$email', '$contact', '$username', '$password')";
 
    if ($conn->query($sql) === TRUE) {
+      $userId = $conn->insert_id;
+
+      foreach ($employeeTypes as $employeeType) {
+         $insertRegisteredSql = "INSERT INTO registered (user_id, system_id) 
+                                    VALUES ('$userId', '$employeeType')";
+         $conn->query($insertRegisteredSql);
+      }
+
       $message = base64_encode('success~Account successfully registered!');
-      header("Location: login?m=".$message);
+      header("Location: login?m=" . $message);
    } else {
       $message = base64_encode('danger~Something went wrong!');
-      header("Location: register?m=".$message);
+      header("Location: register?m=" . $message);
    }
 
    $conn->close();
@@ -86,23 +97,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                            <label for="">Choose to Register:</label>
                            <div class="input-group row mb-3 pl-4 required">
                               <div class="form-check col-sm-6 col-12">
-                                 <input type="checkbox" class="form-check-input" id="E-ClothRider">
+                                 <input type="checkbox" class="form-check-input" id="E-ClothRider" name="employee_type[]" value="1">
                                  <label class="form-check-label" for="E-ClothRider">E-Cloth Rider</label>
                               </div>
                               <div class="form-check col-sm-6 col-12">
-                                 <input type="checkbox" class="form-check-input" id="SeafairEmployee">
+                                 <input type="checkbox" class="form-check-input" id="SeafairEmployee" name="employee_type[]" value="2">
                                  <label class="form-check-label" for="SeafairEmployee">Seafair Employee</label>
                               </div>
                               <div class="form-check col-sm-6 col-12">
-                                 <input type="checkbox" class="form-check-input" id="RealEstateEmployee">
+                                 <input type="checkbox" class="form-check-input" id="RealEstateEmployee" name="employee_type[]" value="3">
                                  <label class="form-check-label" for="RealEstateEmployee">Real Estate Employee</label>
                               </div>
                               <div class="form-check col-sm-6 col-12">
-                                 <input type="checkbox" class="form-check-input" id="PISOEmployee">
+                                 <input type="checkbox" class="form-check-input" id="PISOEmployee" name="employee_type[]" value="4">
                                  <label class="form-check-label" for="PISOEmployee">PISO Employee</label>
                               </div>
                               <div class="form-check col-sm-6 col-12">
-                                 <input type="checkbox" class="form-check-input" id="HypebeastEmployee">
+                                 <input type="checkbox" class="form-check-input" id="HypebeastEmployee" name="employee_type[]" value="5">
                                  <label class="form-check-label" for="HypebeastEmployee">Hypebeast Employee</label>
                               </div>
                            </div>
