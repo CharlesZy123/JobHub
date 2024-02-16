@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $sql = "INSERT INTO users (firstname, lastname, email, contact, username, password) VALUES ('$fname', '$lname', '$email', '$contact', '$username', '$password')";
 
    if ($conn->query($sql) === TRUE) {
-      header( "Location: login" );
+      header("Location: login");
    } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
    }
@@ -79,6 +79,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                  <div class="input-group-text">
                                     <span class="fas fa-lock"></span>
                                  </div>
+                              </div>
+                           </div>
+                           <label for="">Choose to Register:</label>
+                           <div class="input-group row mb-3 pl-4">
+                              <div class="form-check col-sm-6 col-12">
+                                 <input type="checkbox" class="form-check-input" id="E-ClothRider">
+                                 <label class="form-check-label" for="E-ClothRider">E-Cloth Rider</label>
+                              </div>
+                              <div class="form-check col-sm-6 col-12">
+                                 <input type="checkbox" class="form-check-input" id="SeafairEmployee">
+                                 <label class="form-check-label" for="SeafairEmployee">Seafair Employee</label>
+                              </div>
+                              <div class="form-check col-sm-6 col-12">
+                                 <input type="checkbox" class="form-check-input" id="RealEstateEmployee">
+                                 <label class="form-check-label" for="RealEstateEmployee">Real Estate Employee</label>
+                              </div>
+                              <div class="form-check col-sm-6 col-12">
+                                 <input type="checkbox" class="form-check-input" id="PISOEmployee">
+                                 <label class="form-check-label" for="PISOEmployee">PISO Employee</label>
+                              </div>
+                              <div class="form-check col-sm-6 col-12">
+                                 <input type="checkbox" class="form-check-input" id="HypebeastEmployee">
+                                 <label class="form-check-label" for="HypebeastEmployee">Hypebeast Employee</label>
                               </div>
                            </div>
                            <div class="row">
