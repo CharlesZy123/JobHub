@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <h3 class="login-box-msg">Register Form</h3>
                         <form action="" method="post">
                            <div class="input-group mb-3">
-                              <input type="text" class="form-control" placeholder="Firstname" name="fname">
+                              <input type="text" class="form-control" placeholder="Firstname" name="fname" required>
                               <div class="input-group-append">
                                  <div class="input-group-text">
                                     <span class="fas fa-user"></span>
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                               </div>
                            </div>
                            <div class="input-group mb-3">
-                              <input type="text" class="form-control" placeholder="Lastname" name="lname">
+                              <input type="text" class="form-control" placeholder="Lastname" name="lname" required>
                               <div class="input-group-append">
                                  <div class="input-group-text">
                                     <span class="fas fa-user"></span>
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                               </div>
                            </div>
                            <div class="input-group mb-3">
-                              <input type="text" class="form-control" placeholder="Phone Number" name="contact">
+                              <input type="text" class="form-control" placeholder="Phone Number" name="contact" required>
                               <div class="input-group-append">
                                  <div class="input-group-text">
                                     <span class="fas fa-phone"></span>
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                               </div>
                            </div>
                            <div class="input-group mb-3">
-                              <input type="text" class="form-control" placeholder="Username">
+                              <input type="text" class="form-control" placeholder="Username" required>
                               <div class="input-group-append">
                                  <div class="input-group-text">
                                     <span class="fas fa-user-secret"></span>
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                               </div>
                            </div>
                            <div class="input-group mb-3">
-                              <input type="password" class="form-control" placeholder="Password" name="password">
+                              <input type="password" class="form-control" placeholder="Password" name="password" required>
                               <div class="input-group-append">
                                  <div class="input-group-text">
                                     <span class="fas fa-lock"></span>
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                               </div>
                            </div>
                            <label for="">Choose to Register:</label>
-                           <div class="input-group row mb-3 pl-4">
+                           <div class="input-group row mb-3 pl-4 required">
                               <div class="form-check col-sm-6 col-12">
                                  <input type="checkbox" class="form-check-input" id="E-ClothRider">
                                  <label class="form-check-label" for="E-ClothRider">E-Cloth Rider</label>
