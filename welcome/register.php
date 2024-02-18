@@ -14,14 +14,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
    $employeeTypes = isset($_POST['employee_type']) ? $_POST['employee_type'] : [];
 
-   $sql = "INSERT INTO users (firstname, lastname, email, contact, username, password, role) VALUES ('$fname', '$lname', '$email', '$contact', '$username', '$password', 2)";
+   if (empty($fname) || empty($lname) || empty($email) || empty($contact) ||empty($username) || empty($password)) {
+      $message = base64_encode('danger~All fields are required.');
+      header("Location: register?m=" . $message);
+      exit();
+   }
 
-   if ($conn->query($sql) === TRUE) {
+   if (empty($employeeTypes)) {
+      $message = base64_encode('danger~Please select to register with.');
+      header("Location: register?m=" . $message);
+      exit();
+   }
+
+   $checkUsernameQuery = "SELECT COUNT(*) as count FROM users WHERE username = ?";
+   $stmt = $conn->prepare($checkUsernameQuery);
+   $stmt->bind_param('s', $username);
+   $stmt->execute();
+   $result = $stmt->get_result();
+   $row = $result->fetch_assoc();
+
+   if ($row['count'] > 0) {
+      $message = base64_encode('danger~Username is already taken. Please choose another.');
+      header("Location: register?m=" . $message);
+      exit();
+   }
+
+   $insertUserQuery = "INSERT INTO users (firstname, lastname, email, contact, username, password, role) VALUES (?, ?, ?, ?, ?, ?, 2)";
+   $stmt = $conn->prepare($insertUserQuery);
+   $stmt->bind_param('ssssss', $fname, $lname, $email, $contact, $username, $password);
+
+   if ($stmt->execute()) {
       $userId = $conn->insert_id;
 
       foreach ($employeeTypes as $employeeType) {
-         $insertRegisteredSql = "INSERT INTO registered (user_id, system_id) VALUES ('$userId', '$employeeType')";
-         $conn->query($insertRegisteredSql);
+         $insertRegisteredSql = "INSERT INTO registered (user_id, system_id) VALUES (?, ?)";
+         $stmt = $conn->prepare($insertRegisteredSql);
+         $stmt->bind_param('ss', $userId, $employeeType);
+         $stmt->execute();
       }
 
       $message = base64_encode('success~Account successfully registered!');
@@ -31,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       header("Location: register?m=" . $message);
    }
 
+   $stmt->close();
    $conn->close();
 }
 
@@ -66,7 +96,7 @@ if(isset($_SESSION['user_id'])){
                               </div>
                            </div>
                            <div class="input-group mb-3">
-                              <input type="email" class="form-control" placeholder="Email Address" name="email">
+                              <input type="email" class="form-control" placeholder="Email Address" name="email" required>
                               <div class="input-group-append">
                                  <div class="input-group-text">
                                     <span class="fas fa-envelope"></span>
@@ -98,7 +128,7 @@ if(isset($_SESSION['user_id'])){
                               </div>
                            </div>
                            <label for="">Choose to Register:</label>
-                           <div class="input-group row mb-3 pl-4 required">
+                           <div class="input-group row mb-3 pl-4">
                               <div class="form-check col-sm-6 col-12">
                                  <input type="checkbox" class="form-check-input" id="E-ClothRider" name="employee_type[]" value="1">
                                  <label class="form-check-label" for="E-ClothRider">E-Cloth Rider</label>
