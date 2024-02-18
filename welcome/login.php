@@ -1,6 +1,6 @@
-<?php include('partials/_header.php'); ?>
-<?php include('partials/_navbar.php'); ?>
-<?php
+<?php include('partials/_header.php');
+include('partials/_navbar.php');
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    require('../db/dbconn.php');
 
@@ -20,13 +20,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $row = $result->fetch_assoc();
 
       if (password_verify($password, $row['password'])) {
-         session_start();
-         $_SESSION['user_id'] = $row['id'];
-         $_SESSION['username'] = $row['username'];
+         if ($row['role'] == 2) {
+            session_start();
+            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['user_role'] = $row['role'];
 
-         $message = base64_encode('success~Login successful!');
-         header("Location: ../users/dashboard?m=" . $message);
-         exit();
+            $message = base64_encode('success~Login successful!');
+            header("Location: ../users/dashboard?m=" . $message);
+            exit();
+         } else {
+            $message = base64_encode('danger~Access denied. You do not have the required role.');
+            header("Location: login?m=" . $message);
+            exit();
+         }
       } else {
          $message = base64_encode('danger~Incorrect password.');
          header("Location: login?m=" . $message);
@@ -41,8 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $conn->close();
 }
 
-if(isset($_SESSION['user_id'])){
-   header("Location: ../users/dashboard.php");
+if (isset($_SESSION['user_id'])) {
+   header("Location: ../users/dashboard");
 }
 ?>
 
@@ -87,6 +94,9 @@ if(isset($_SESSION['user_id'])){
                               </div>
                               <div class="col-4">
                                  <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                              </div>
+                              <div class="col-12">
+                                 <a href="../staff/login">Sign in as Staff</a>
                               </div>
                            </div>
                         </form>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2024 at 09:55 AM
+-- Generation Time: Feb 18, 2024 at 09:06 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -29,18 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `registered` (
   `id` int(11) NOT NULL,
-  `system_id` varchar(255) NOT NULL,
+  `system_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `registered`
---
-
-INSERT INTO `registered` (`id`, `system_id`, `user_id`, `created_at`) VALUES
-(1, '1', 1, '2024-02-16 06:46:59'),
-(2, '2', 1, '2024-02-16 06:46:59');
 
 -- --------------------------------------------------------
 
@@ -59,11 +51,11 @@ CREATE TABLE `systems` (
 --
 
 INSERT INTO `systems` (`id`, `name`, `create_at`) VALUES
-(1, 'E-Cloth Rider', '2024-02-15 22:18:46'),
-(2, 'Seafair Employee', '2024-02-15 22:18:46'),
-(3, 'Real Estate Employee', '2024-02-15 22:19:32'),
-(4, 'PISO Employee', '2024-02-15 22:19:32'),
-(5, 'Hypebeast Employee', '2024-02-15 22:20:07');
+(1, 'E-Cloth', '2024-02-18 08:05:29'),
+(2, 'Seafair', '2024-02-18 08:05:24'),
+(3, 'Real Estate', '2024-02-18 08:06:07'),
+(4, 'PISO', '2024-02-18 08:05:40'),
+(5, 'Hypebeast', '2024-02-18 08:05:48');
 
 -- --------------------------------------------------------
 
@@ -82,13 +74,6 @@ CREATE TABLE `users` (
   `role` int(11) NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `firstname`, `lastname`, `email`, `contact`, `password`, `role`, `create_at`) VALUES
-(1, 'Mr. Lonely', 'Charles Fonzy', 'Varquez', 'varzy2305@gmail.com', '09052986495', '$2y$10$es9ViRbZqmBfKfZ4Z/XfUOT0HCtpPWfLNIDjMoA0A1iQ0SmGqnQIK', 1, '2024-02-16 06:52:40');
 
 --
 -- Indexes for dumped tables
@@ -120,7 +105,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `registered`
 --
 ALTER TABLE `registered`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `systems`
@@ -132,7 +117,7 @@ ALTER TABLE `systems`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

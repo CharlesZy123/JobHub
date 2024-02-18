@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
    $employeeTypes = isset($_POST['employee_type']) ? $_POST['employee_type'] : [];
 
-   $sql = "INSERT INTO users (firstname, lastname, email, contact, username, password, role) VALUES ('$fname', '$lname', '$email', '$contact', '$username', '$password', 1)";
+   $sql = "INSERT INTO users (firstname, lastname, email, contact, username, password, role) VALUES ('$fname', '$lname', '$email', '$contact', '$username', '$password', 2)";
 
    if ($conn->query($sql) === TRUE) {
       $userId = $conn->insert_id;
