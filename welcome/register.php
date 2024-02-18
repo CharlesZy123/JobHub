@@ -74,7 +74,7 @@ if(isset($_SESSION['user_id'])){
                               </div>
                            </div>
                            <div class="input-group mb-3">
-                              <input type="text" class="form-control" placeholder="Phone Number" name="contact" required>
+                              <input type="text" class="form-control" placeholder="Phone Number" name="contact" pattern="[0-9\+]+" title="Please enter only numbers and the '+' symbol" required>
                               <div class="input-group-append">
                                  <div class="input-group-text">
                                     <span class="fas fa-phone"></span>
