@@ -96,7 +96,7 @@ if (isset($_SESSION['user_id'])) {
                                  <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                               </div>
                               <div class="col-12">
-                                 <a href="../staff/login">Sign in as Staff</a>
+                                 <a href="../admin/login">Sign in as Admin</a>
                               </div>
                            </div>
                         </form>
