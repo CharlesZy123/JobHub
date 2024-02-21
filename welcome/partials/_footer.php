@@ -52,6 +52,8 @@
 <!-- Vendor JS Files -->
 <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="../assets/vendor/php-email-form/validate.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../assets/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="../assets/adminlte/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->

@@ -28,7 +28,7 @@ $result = mysqli_query($conn, $query);
                                             <h3><?= $test['name'] ?></h3>
                                             <p>Description here</p>
                                         </div>
-                                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                        <a href="redirect?id=<?= $test['id']?>" class="small-box-footer">Continue <i class="fas fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
