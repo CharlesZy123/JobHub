@@ -53,7 +53,7 @@ if (isset($_SESSION['user_id'])) {
 }
 ?>
 
-<div class="content-wrapper">
+<div class="content-wrapper mt-4">
    <main id="main">
       <section class="content section-t8">
          <div class="container-fluid">
