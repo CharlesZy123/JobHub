@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if(isset($_SESSION['user_id'])){
-   header("Location: ../users/dashboard.php");
+   header("Location: ../user/dashboard.php");
 }
 ?>
 <div class="content-wrapper">

@@ -39,7 +39,7 @@ function echoActiveClass($requestUri)
                </li>
             <?php } else { ?>
                <li class="nav-item">
-                  <a class="nav-link pl-2 <?php echoActiveClass('dashboard'); ?>" href="../users/dashboard">Home</a>
+                  <a class="nav-link pl-2 <?php echoActiveClass('dashboard'); ?>" href="../user/dashboard">Home</a>
                </li>
                <li class="nav-item">
                   <a class="nav-link pl-2" href="../welcome/logout">Logout <i class="fas fa-power-off"></i></a>

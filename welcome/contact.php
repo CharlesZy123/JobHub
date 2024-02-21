@@ -2,7 +2,7 @@
 include('partials/_header.php');
 include('partials/_navbar.php');
 if (isset($_SESSION['user_id'])) {
-   header("Location: ../users/dashboard.php");
+   header("Location: ../user/dashboard.php");
 }
 ?>
 

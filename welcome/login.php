@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_role'] = $row['role'];
 
             $message = base64_encode('success~Login successful!');
-            header("Location: ../users/dashboard?m=" . $message);
+            header("Location: ../user/dashboard?m=" . $message);
             exit();
          } else {
             $message = base64_encode('danger~Access denied. You do not have the required role.');
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if (isset($_SESSION['user_id'])) {
-   header("Location: ../users/dashboard");
+   header("Location: ../user/dashboard");
 }
 ?>
 
