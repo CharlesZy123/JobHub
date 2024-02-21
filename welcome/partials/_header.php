@@ -26,8 +26,8 @@ session_start();
    <!-- Toastr -->
    <link rel="stylesheet" href="../assets/adminlte/plugins/toastr/toastr.min.css">
    <!-- Template Main CSS File -->
-   <link href="../assets/adminlte/dist/css/adminlte.min.css" rel="stylesheet">
    <link href="../assets/css/style.css" rel="stylesheet">
+   <link href="../assets/adminlte/dist/css/adminlte.min.css" rel="stylesheet">
 </head>
 
 <body class="hold-transition layout-top-nav">

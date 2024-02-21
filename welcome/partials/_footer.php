@@ -36,14 +36,34 @@
                </p>
             </div>
             <div class="credits">
-               Designed by <a href="#">Charles Fonzy</a>
+               Designed by <a href="#">Hugaw</a>
             </div>
          </div>
       </div>
    </div>
 </footer>
 </div>
-
+<div class="modal fade" id="modal-logout">
+   <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h4 class="modal-title">Logging Out?</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <p>Are you sure you want to Logout?</p>
+         </div>
+         <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+            <form id="logout-form" action="../welcome/logout.php" method="POST">
+               <button type="submit" class="btn btn-danger">Yes</button>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 <!-- jQuery -->
 <script src="../assets/adminlte/plugins/jquery/jquery.min.js"></script>

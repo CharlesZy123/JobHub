@@ -1,6 +1,7 @@
 <?php
 if(isset($_GET['id'])){
    $id = $_GET['id'];
+   $_SESSION['job'] = true;
    
    switch ($id) {
       case 1:
@@ -17,7 +18,7 @@ if(isset($_GET['id'])){
          break;
       case 4:
          $_SESSION['dept'] = $id;
-         header('Location: http://localhost/piso');
+         header('Location: http://localhost/piso/');
          exit();
          break;
       case 5:
