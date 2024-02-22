@@ -8,7 +8,7 @@ session_start();
    <meta charset="utf-8">
    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-   <title>Job Hunt | <?php if (basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)) == "index") { echo 'Welcome'; } else { echo ucfirst(basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))); } ?></title>
+   <title>JobHub | <?php if (basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)) == "index") { echo 'Welcome'; } else { echo ucfirst(basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))); } ?></title>
    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
    <!-- Font Awesome -->
