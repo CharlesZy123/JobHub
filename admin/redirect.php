@@ -1,29 +1,26 @@
 <?php
 session_start();
-if (isset($_GET['id'])) {
-   $id = $_GET['id'];
+if (isset($_SESSION['dept'])) {
+   $dept = $_SESSION['dept'];
    $_SESSION['jobhub'] = true;
 
-   switch ($id) {
+   switch ($dept) {
       case 1:
-         $_SESSION['dept'] = $id;
          header('');
          break;
       case 2:
-         $_SESSION['dept'] = $id;
          header('');
          break;
       case 3:
-         $_SESSION['dept'] = $id;
          header('');
          break;
       case 4:
-         $_SESSION['dept'] = $id;
-         header('Location: ../piso/');
+         $message = base64_encode('success~Login successful!');
+         header('Location: ../piso/index?m='.$message);
+         // echo "<script>alert('$message')</script>";
          exit();
          break;
       case 5:
-         $_SESSION['dept'] = $id;
          header('');
          break;
       default:
@@ -32,5 +29,5 @@ if (isset($_GET['id'])) {
    }
 } else {
    $message = base64_encode('danger~Something went wrong!');
-   header('Location: dashboard?m=' . $message);
+   header('Location: login?m=' . $message);
 }
