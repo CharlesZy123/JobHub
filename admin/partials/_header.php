@@ -1,9 +1,7 @@
 <?php
 session_start();
 if(basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)) != "login"){
-   if(isset($_SESSION['dept'])){
-      
-   } else {
+   if(!isset($_SESSION['admin_id'])){
       header("Location: login");
       exit();
    }

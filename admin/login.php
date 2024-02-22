@@ -12,20 +12,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       exit();
    }
 
-   if (empty($dept)) {
-      $message = base64_encode('danger~Please choose a department!');
-      header("Location: login?m=" . $message);
-      exit();
-   }
-
-   $query = "SELECT * FROM users WHERE username = '$usernameOrEmail' OR email = '$usernameOrEmail'";
+   $query = "SELECT * FROM admins WHERE username = '$usernameOrEmail' OR email = '$usernameOrEmail'";
    $result = $conn->query($query);
+   $row = $result->fetch_assoc();
 
-   if ($result->num_rows > 0) {
-      $row = $result->fetch_assoc();
-
+   if ($result->num_rows > 0 && $dept == $row['system_id']) {
       if (password_verify($password, $row['password'])) {
-         if ($row['role'] == 1) {
+         if($row['role'] == 0){
+            $_SESSION['admin_id'] = $row['id'];
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['user_role'] = $row['role'];
+
+            $message = base64_encode('success~Welcome JobHub Administrator!');
+            header("Location: dashboard?m=" . $message);
+            exit();
+         } elseif ($row['role'] == 1) {
             $_SESSION['admin_id'] = $row['id'];
             $_SESSION['username'] = $row['username'];
             $_SESSION['user_role'] = $row['role'];
@@ -73,9 +74,10 @@ $result = mysqli_query($conn, $query);
             <p class="login-box-msg">Sign in as Administrator</p>
             <select class="form-control text-center mb-4" name="dept" required>
                <option selected disabled value="">Select Department</option>
-               <?php foreach($result as $value):?>
-                  <option value="<?= $value['id']?>"><?= $value['name']?></option>
-               <?php endforeach;?>
+               <?php foreach ($result as $value) : ?>
+                  <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+               <?php endforeach; ?>
+               <option value="0">JobHub</option>
             </select>
             <div class="input-group mb-3">
                <input type="text" class="form-control" placeholder="Email or username" name="email">
@@ -114,4 +116,4 @@ $result = mysqli_query($conn, $query);
    </div>
 </div>
 
-<?php include('partials/_footer.php')?>
+<?php include('partials/_footer.php') ?>
