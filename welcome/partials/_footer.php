@@ -32,7 +32,7 @@
             <div class="copyright-footer">
                <p class="copyright color-text-a">
                   &copy; Copyright
-                  <span class="color-a">Job Hub</span> All Rights Reserved.
+                  <span class="color-a">JobHub</span> All Rights Reserved.
                </p>
             </div>
             <div class="credits">

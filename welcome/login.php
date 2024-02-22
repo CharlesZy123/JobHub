@@ -61,7 +61,7 @@ if (isset($_SESSION['user_id'])) {
                <div class="col-sm-4"></div>
                <div class="col-sm-4 mt-4 mb-3">
                   <div class="text-center mb-3">
-                     <a class="h1" href="index">Job <span class="color-b">Hunt</span></a>
+                     <a class="h1" href="index">Job <span class="color-b">Hub</span></a>
                   </div>
                   <div class="card card-outline card-primary">
                      <div class="card-body">

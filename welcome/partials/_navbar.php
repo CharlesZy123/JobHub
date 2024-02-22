@@ -16,7 +16,7 @@ function echoActiveClass($requestUri)
          <span></span>
          <span></span>
       </button>
-      <a class="h3" href="../index.php">Job <span class="color-b">Hub</span></a>
+      <a class="h3" href="../index.php">Job<span class="color-b">Hub</span></a>
 
       <div class="navbar-collapse collapse" style="justify-content: right;" id="navbarDefault">
          <ul class="navbar-nav ml-auto">
