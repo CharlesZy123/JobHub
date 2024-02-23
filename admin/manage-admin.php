@@ -16,11 +16,13 @@ $result = mysqli_query($conn, $query);
                <div class="col-sm-12 mt-5">
                   <div class="card">
                      <div class="card-header">
-                        <a href="add-admin" class="btn btn-primary float-right">Add Admin</a>
+                        <a href="add-admin" class="btn btn-primary float-right">
+                           <i class="fas fa-plus"></i> Add Admin
+                        </a>
                         <h5 class="mt-1">Admin List</h5>
                      </div>
                      <div class="card-body">
-                        <table id="table" class="table table-bordered table-striped text-center">
+                        <table id="table" class="table text-center">
                            <thead>
                               <tr>
                                  <th>#</th>

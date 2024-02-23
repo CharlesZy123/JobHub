@@ -20,19 +20,21 @@ $result = mysqli_query($conn, $query);
                         <h5 class="mt-1">Subsystem List</h5>
                      </div>
                      <div class="card-body">
-                        <table id="table" class="table table-bordered table-striped text-center">
+                        <table id="table" class="table table-bordered text-center">
                            <thead>
                               <tr>
                                  <th>#</th>
-                                 <th>Action</th>
                                  <th>System</th>
                                  <th>Description</th>
+                                 <th>Action</th>
                               </tr>
                            </thead>
                            <tbody>
                               <?php foreach ($result as $key => $value) : ?>
                                  <tr>
                                     <td><?= $key + 1 ?></td>
+                                    <td class="pl-5 pr-5"><?= $value['name'] ?></td>
+                                    <td><?= $value['description'] ?></td>
                                     <td>
                                        <a href="#" class="btn btn-info m-1">
                                           <i class="fas fa-edit"></i>
@@ -41,8 +43,6 @@ $result = mysqli_query($conn, $query);
                                           <i class="fas fa-trash"></i>
                                        </a>
                                     </td>
-                                    <td><?= $value['name'] ?></td>
-                                    <td><?= $value['description'] ?></td>
                                  </tr>
                               <?php endforeach; ?>
                            </tbody>

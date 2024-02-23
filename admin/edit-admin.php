@@ -10,29 +10,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
    if (empty($username) || empty($email) || empty($sys)) {
       $message = base64_encode('danger~All fields are required.');
-      header("Location: edit-admin?id=".$id."&m=".$message);
+      header("Location: edit-admin?id=" . $id . "&m=" . $message);
       exit();
    }
 
-   
+
    if (!empty($password)) {
-      $updateQuery = "UPDATE admins (username, email, password, system_id) VALUES ('$username', '$email', '$password', '$sys') WHERE id = '$id'";
-      if(mysqli_query($conn, $updateQuery)){
-         $message = base64_encode('success~Admin ' . $username . ' successfully updated!');
-         header("Location: manage-admin?m=" . $message);
-      } else {
-         $message = base64_encode('danger~Something went wrong!');
-         header("Location: manage-admin?m=" . $message);
-      }
+      $updateQuery = "UPDATE admins SET username = '$username', email = '$email', password = '$password', system_id = '$sys' WHERE id = '$id'";
    } else {
-      $updateQuery = "UPDATE admins (username, email, system_id) VALUES ('$username', '$email', '$sys') WHERE id = ''";
-      if(mysqli_query($conn, $updateQuery)){
-         $message = base64_encode('success~Admin ' . $username . ' successfully updated!');
-         header("Location: manage-admin?m=" . $message);
-      } else {
-         $message = base64_encode('danger~Something went wrong!');
-         header("Location: manage-admin?m=" . $message);
-      }
+      $updateQuery = "UPDATE admins SET username = '$username', email = '$email', system_id = '$sys' WHERE id = '$id'";
+   }
+
+   if (mysqli_query($conn, $updateQuery)) {
+      $message = base64_encode('success~Admin ' . $username . ' successfully updated!');
+      header("Location: manage-admin?m=" . $message);
+   } else {
+      $message = base64_encode('danger~Something went wrong!');
+      header("Location: manage-admin?m=" . $message);
    }
 
    mysqli_close($conn);
@@ -100,7 +94,8 @@ include('partials/_sidebar.php');
                            </div>
                         </div>
                         <div class="card-footer">
-                           <button type="submit" class="btn btn-primary float-right">Save</button>
+                           <a href="manage-admin" class="btn btn-secondary">Cancel</a>
+                           <button type="submit" class="btn btn-success float-right">Update</button>
                         </div>
                      </form>
                   </div>
