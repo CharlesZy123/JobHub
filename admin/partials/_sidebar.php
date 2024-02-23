@@ -47,7 +47,7 @@ function echoActiveClass($requestUri)
                </a>
             </li>
             <li class="nav-item">
-               <a href="manage-admin" class="nav-link <?= echoActiveClass('manage-admin') || echoActiveClass('add-admin') ?>">
+               <a href="manage-admin" class="nav-link <?= echoActiveClass('manage-admin') || echoActiveClass('add-admin') || echoActiveClass('edit-admin') ?>?>">
                   <i class="nav-icon fa fa-user-lock mr-2" aria-hidden="true"></i>
                   <p>Manage Admins</p>
                </a>

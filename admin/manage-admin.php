@@ -3,7 +3,7 @@ require('../db/dbconn.php');
 include('partials/_navbar.php');
 include('partials/_sidebar.php');
 
-$query = "SELECT * FROM admins JOIN systems ON admins.system_id = systems.id";
+$query = "SELECT * FROM systems JOIN admins ON admins.system_id = systems.id";
 $result = mysqli_query($conn, $query);
 ?>
 
@@ -35,7 +35,7 @@ $result = mysqli_query($conn, $query);
                                  <tr>
                                     <td><?= $key + 1 ?></td>
                                     <td>
-                                       <a href="#" class="btn btn-info m-1">
+                                       <a href="edit-admin?id=<?= $value['id']?>" class="btn btn-info m-1">
                                           <i class="fas fa-edit"></i>
                                        </a>
                                        <a href="#" class="btn btn-danger m-1">
