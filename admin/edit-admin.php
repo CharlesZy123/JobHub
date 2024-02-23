@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    }
 
    if (mysqli_query($conn, $updateQuery)) {
-      $message = base64_encode('success~Admin ' . $username . ' successfully updated!');
+      $message = base64_encode('success~Successfully updated!');
       header("Location: manage-admin?m=" . $message);
    } else {
       $message = base64_encode('danger~Something went wrong!');
