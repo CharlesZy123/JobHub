@@ -4,7 +4,7 @@ $current_page = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 <!-- Main Footer -->
 <?php if ($current_page != 'login') { ?>
    <footer class="main-footer">
-      <strong>Copyright &copy; 2024-2025 <a href="#">PISO</a>.</strong>
+      <strong>Copyright &copy; 2024-2025 <a href="#">JobHub</a>.</strong>
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
          <b>Version</b> 1.0.0

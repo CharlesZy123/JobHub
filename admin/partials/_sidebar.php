@@ -39,40 +39,17 @@ function echoActiveClass($requestUri)
                </a>
             </li>
             <li class="nav-item">
-               <a href="vacancy" class="nav-link <?= echoActiveClass('vacancy') ?>">
+               <a href="subsystems" class="nav-link <?= echoActiveClass('subsystems') ?>">
                   <i class="nav-icon fa fa-address-book mr-2" aria-hidden="true"></i>
                   <p>
-                     Vacancy
-                     <!-- <span class="right badge badge-success">1</span> -->
+                     Subsystems
                   </p>
                </a>
             </li>
             <li class="nav-item">
-               <a href="category/" class="nav-link <?= echoActiveClass('category') ?>">
-                  <i class="nav-icon fa fa-book-open mr-2" aria-hidden="true"></i>
-                  <p>Category</p>
-               </a>
-            </li>
-            <li class="nav-item">
-               <a href="employer/" class="nav-link <?= echoActiveClass('employer') ?>">
-                  <i class="nav-icon fa fa-users mr-2" aria-hidden="true"></i>
-                  <p>
-                     Employer
-                  </p>
-               </a>
-            </li>
-            <li class="nav-item">
-               <a href="#" class="nav-link <?= echoActiveClass('applicants') ?>">
-                  <i class="nav-icon fa fa-id-card mr-2" aria-hidden="true"></i>
-                  <p>
-                     Applicants
-                  </p>
-               </a>
-            </li>
-            <li class="nav-item">
-               <a href="#" class="nav-link">
+               <a href="manage-admin" class="nav-link <?= echoActiveClass('manage-admin') || echoActiveClass('add-admin') ?>">
                   <i class="nav-icon fa fa-user-lock mr-2" aria-hidden="true"></i>
-                  <p>Manage Users</p>
+                  <p>Manage Admins</p>
                </a>
             </li>
             <li class="nav-item">

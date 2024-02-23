@@ -73,7 +73,7 @@ $result = mysqli_query($conn, $query);
          <form action="" method="post">
             <p class="login-box-msg">Sign in as Administrator</p>
             <select class="form-control text-center mb-4" name="dept" required>
-               <option selected disabled value="">Select Department</option>
+               <option selected disabled value="">Select System</option>
                <?php foreach ($result as $value) : ?>
                   <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
                <?php endforeach; ?>
