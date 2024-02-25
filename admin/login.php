@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
          } elseif ($row['role'] == 1) {
             $_SESSION['admin_id'] = $row['id'];
             $_SESSION['username'] = $row['username'];
-            $_SESSION['sys_id'] = $row['system_id'];
             $_SESSION['user_role'] = $row['role'];
             $_SESSION['dept'] = $dept;
 

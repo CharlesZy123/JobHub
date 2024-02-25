@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2024 at 01:47 PM
+-- Generation Time: Feb 25, 2024 at 05:03 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -43,8 +43,22 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `username`, `email`, `password`, `system_id`, `role`, `create_at`) VALUES
 (1, 'Admin', 'admin@gmail.com', '$2y$10$c/e4hB7wNISkJPuAJEMUh.Ik6RaX3t3EaDSWhc5VvfAuhvORVLUgK', 0, 0, '2024-02-22 08:16:02'),
-(2, 'Charles', 'piso@gmail.com', '$2y$10$c/e4hB7wNISkJPuAJEMUh.Ik6RaX3t3EaDSWhc5VvfAuhvORVLUgK', 4, 1, '2024-02-23 10:27:24'),
-(3, 'E-Cloth Admin', 'ecloth@admin.com', '$2y$10$2qVmoz2v6tIgIQNDJUEUJeQvv2SX0KHxaxU1aixRUTkOFIlCJIn6a', 1, 1, '2024-02-23 01:22:35');
+(2, 'PISO', 'piso@gmail.com', '$2y$10$c/e4hB7wNISkJPuAJEMUh.Ik6RaX3t3EaDSWhc5VvfAuhvORVLUgK', 4, 1, '2024-02-25 03:38:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `applicants`
+--
+
+CREATE TABLE `applicants` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `system_id` int(11) NOT NULL,
+  `job_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -55,7 +69,6 @@ INSERT INTO `admins` (`id`, `username`, `email`, `password`, `system_id`, `role`
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `system_id` int(11) NOT NULL,
-  `employer_id` int(11) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -64,8 +77,34 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `system_id`, `employer_id`, `name`, `created_at`) VALUES
-(1, 4, NULL, 'Hospitality and guest services', '2024-02-22 02:43:09');
+INSERT INTO `categories` (`id`, `system_id`, `name`, `created_at`) VALUES
+(1, 4, 'Hospitality and Guest Services', '2024-02-25 07:08:48'),
+(2, 4, 'Entertainment and Activities', '2024-02-25 00:17:07');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` int(11) NOT NULL,
+  `system_id` int(11) NOT NULL,
+  `job` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `vacancy` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `jobs`
+--
+
+INSERT INTO `jobs` (`id`, `system_id`, `job`, `description`, `vacancy`, `category_id`, `created_at`) VALUES
+(1, 4, 'Employee', 'Wala lng, kayo na bahala magsulat ng kahit ano rito dahil wala na akong maisipan pa eh', 5, 1, '2024-02-25 08:04:39'),
+(2, 4, 'Employee', 'Wla lng talaga haha', 4, 2, '2024-02-25 16:02:26'),
+(3, 4, 'Alien', 'Wla lng talaga haha', 5, 2, '2024-02-25 08:04:44');
 
 -- --------------------------------------------------------
 
@@ -80,16 +119,6 @@ CREATE TABLE `registered` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `registered`
---
-
-INSERT INTO `registered` (`id`, `system_id`, `user_id`, `created_at`) VALUES
-(1, 4, 2, '2024-02-21 05:47:14'),
-(2, 1, 3, '2024-02-21 13:45:53'),
-(3, 3, 3, '2024-02-21 13:45:53'),
-(4, 4, 3, '2024-02-21 13:45:53');
-
 -- --------------------------------------------------------
 
 --
@@ -99,7 +128,8 @@ INSERT INTO `registered` (`id`, `system_id`, `user_id`, `created_at`) VALUES
 CREATE TABLE `systems` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `sys_true` int(11) NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -107,12 +137,12 @@ CREATE TABLE `systems` (
 -- Dumping data for table `systems`
 --
 
-INSERT INTO `systems` (`id`, `name`, `description`, `create_at`) VALUES
-(1, 'E-Cloth', 'Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ', '2024-02-23 11:14:42'),
-(2, 'Seafair', 'Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2024-02-23 03:48:56'),
-(3, 'Real Estate', 'Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2024-02-23 03:49:00'),
-(4, 'PISO', 'Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2024-02-23 03:49:05'),
-(5, 'Hypebeast', 'Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2024-02-23 03:49:09');
+INSERT INTO `systems` (`id`, `name`, `description`, `sys_true`, `create_at`) VALUES
+(1, 'E-Cloth', 'Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ', 0, '2024-02-25 02:56:18'),
+(2, 'Seafair', 'Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 0, '2024-02-23 03:48:56'),
+(3, 'Real Estate', 'Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 0, '2024-02-23 03:49:00'),
+(4, 'PISO', 'Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 1, '2024-02-25 07:49:16'),
+(5, 'Hypebeast', 'Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 0, '2024-02-23 03:49:09');
 
 -- --------------------------------------------------------
 
@@ -133,26 +163,6 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `firstname`, `lastname`, `email`, `contact`, `password`, `role`, `create_at`) VALUES
-(1, 'Admin', 'Charles Fonzy', 'Varquez', 'admin@gmail.com', '09052986495', '$2y$10$c/e4hB7wNISkJPuAJEMUh.Ik6RaX3t3EaDSWhc5VvfAuhvORVLUgK', 1, '2024-02-21 05:47:48'),
-(2, 'Adik Sayo', 'Charles Fonzy', 'Varquez', 'varquezcharleszy@gmail.com', '09052986495', '$2y$10$c/e4hB7wNISkJPuAJEMUh.Ik6RaX3t3EaDSWhc5VvfAuhvORVLUgK', 2, '2024-02-21 12:03:48'),
-(3, 'Test', 'Sean Timothy', 'Varquez', 'seanvarquez@gmail.com', '09702935517', '$2y$10$PobpSvJitXclnaz2xQkbOuWzNCbGEXbaeNC0jjmfL.q2B4Zk8F8Cm', 2, '2024-02-21 13:45:53');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `vacancies`
---
-
-CREATE TABLE `vacancies` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
 -- Indexes for dumped tables
 --
 
@@ -163,9 +173,21 @@ ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `applicants`
+--
+ALTER TABLE `applicants`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -187,12 +209,6 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `vacancies`
---
-ALTER TABLE `vacancies`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -200,36 +216,42 @@ ALTER TABLE `vacancies`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `applicants`
+--
+ALTER TABLE `applicants`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `registered`
 --
 ALTER TABLE `registered`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `systems`
 --
 ALTER TABLE `systems`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `vacancies`
---
-ALTER TABLE `vacancies`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
