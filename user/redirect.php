@@ -10,6 +10,7 @@ if (isset($_GET['id'])) {
 
    if ($row['id']) {
       $_SESSION['jobhub'] = true;
+      $_SESSION['sys_true'] = true;
       $_SESSION['dept'] = $id;
 
       $deptName = str_replace(' ', '-', strtolower($row['name']));
