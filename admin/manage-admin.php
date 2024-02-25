@@ -36,17 +36,41 @@ $result = mysqli_query($conn, $query);
                               <?php foreach ($result as $key => $value) : ?>
                                  <tr>
                                     <td><?= $key + 1 ?></td>
-                                    <td>
-                                       <a href="edit-admin?id=<?= $value['id']?>" class="btn btn-info m-1">
+                                    <td class="text-sm">
+                                       <a href="edit-admin?id=<?= $value['id'] ?>" class="btn btn-info m-1">
                                           <i class="fas fa-edit"></i>
                                        </a>
-                                       <a href="#" class="btn btn-danger m-1">
+                                       <a href="#" class="btn btn-danger m-1" data-toggle="modal" data-target="#modal-delete-<?= $value['id'] ?>">
                                           <i class="fas fa-trash"></i>
                                        </a>
                                     </td>
                                     <td><?= $value['username'] ?></td>
                                     <td><?= $value['email'] ?></td>
                                     <td><?= $value['name'] ?></td>
+
+                                    <!-- Modals -->
+                                    <div class="modal fade" id="modal-delete-<?= $value['id'] ?>">
+                                       <div class="modal-dialog modal-sm">
+                                          <div class="modal-content">
+                                             <div class="modal-header bg-danger">
+                                                <h4 class="modal-title">System Warning!</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                   <span aria-hidden="true">&times;</span>
+                                                </button>
+                                             </div>
+                                             <div class="modal-body text-center">
+                                                <p>Are you sure you want to delete the admin <b>"<?= $value['username'] ?>"</b> of the <?= $value['name']?> system?</p>
+                                             </div>
+                                             <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <form action="delete-admin?id=<?= $value['id'] ?>" method="POST">
+                                                   <button type="submit" class="btn btn-danger">Yes</button>
+                                                </form>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <!-- End of Modals -->
                                  </tr>
                               <?php endforeach; ?>
                            </tbody>

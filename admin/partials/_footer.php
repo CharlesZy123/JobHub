@@ -38,6 +38,23 @@ $current_page = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 <!-- AdminLTE App -->
 <script src="../assets/adminlte/dist/js/adminlte.min.js"></script>
 <script>
+   document.addEventListener('DOMContentLoaded', function() {
+      var switchElement = document.getElementById('customSwitch3');
+      var labelElement = document.querySelector('.custom-control-label');
+      var hiddenInputElement = document.querySelector('input[name="status"]');
+
+      // Event listener for switch change
+      switchElement.addEventListener('change', function() {
+         if (switchElement.checked) {
+            labelElement.textContent = 'Online';
+            hiddenInputElement.value = '1'; // Set value to 1 for Online
+         } else {
+            labelElement.textContent = 'Offline';
+            hiddenInputElement.value = '0'; // Set value to 0 for Offline
+         }
+      });
+   });
+   
    $(function() {
       <?php
       $decodedM = isset($_GET['m']) ? base64_decode(urldecode($_GET['m'])) : null;

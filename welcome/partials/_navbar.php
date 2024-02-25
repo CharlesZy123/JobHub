@@ -42,6 +42,9 @@ function echoActiveClass($requestUri)
                   <a class="nav-link pl-2 <?php echoActiveClass('dashboard'); ?>" href="../user/dashboard">Home</a>
                </li>
                <li class="nav-item">
+                  <a class="nav-link pl-2 <?php echoActiveClass('profile'); ?>" href="#">Profile</a>
+               </li>
+               <li class="nav-item">
                   <a class="nav-link pl-2" href="#" role="button" data-toggle="modal" data-target="#modal-logout">
                      <i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</a>
                   </a>

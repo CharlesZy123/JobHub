@@ -3,6 +3,7 @@ require('../db/dbconn.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $name = $_POST['name'];
+   $status = $_POST['status'];
    $desc = $_POST['descrip'];
 
    if (empty($name) || empty($desc)) {
@@ -11,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       exit();
    }
 
-   $insertQuery = "INSERT INTO systems (name, description) VALUES ('$name', '$desc')";
+   $insertQuery = "INSERT INTO systems (name, description, sys_true) VALUES ('$name', '$desc', '$status')";
 
    if (mysqli_query($conn, $insertQuery)) {
       $message = base64_encode('success~System ' . $name . ' successfully added!');
@@ -46,10 +47,18 @@ include('partials/_sidebar.php');
                      <form action="" method="post">
                         <div class="card-body">
                            <div class="row" style="display:flex;justify-content:center;">
-                              <div class="col-sm-12">
-                                 <div class="input-group ml-2 mb-4">
+                              <div class="col-sm-7">
+                                 <div class="input-group ml-2">
                                     <label class="mt-2 mr-3">Name:</label>
                                     <input type="text" class="form-control mr-3" placeholder="Write name here..." name="name" autofocus required>
+                                 </div>
+                              </div>
+                              <div class="col-sm-5">
+                                 <div class="pl-2 custom-control custom-switch custom-switch-off-danger custom-switch-on-success mt-2">
+                                    <label class="mr-5">Status:</label>
+                                    <input type="hidden" name="status" value="0">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch3">
+                                    <label class="custom-control-label" for="customSwitch3">Offline</label>
                                  </div>
                               </div>
                               <div class="col-sm-12">

@@ -39,7 +39,7 @@ function echoActiveClass($requestUri)
                </a>
             </li>
             <li class="nav-item">
-               <a href="subsystems" class="nav-link <?= echoActiveClass('subsystems') ?>">
+               <a href="subsystems" class="nav-link <?= echoActiveClass('subsystems')  || echoActiveClass('edit-subsystem') ?>">
                   <i class="nav-icon fa fa-address-book mr-2" aria-hidden="true"></i>
                   <p>
                      Subsystems
@@ -52,7 +52,7 @@ function echoActiveClass($requestUri)
                   <p>Manage Admins</p>
                </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-cogs mr-2"></i>
                   <p>
@@ -63,7 +63,7 @@ function echoActiveClass($requestUri)
                <ul class="nav nav-treeview pl-1">
 
                </ul>
-            </li>
+            </li> -->
          </ul>
       </nav>
    </div>
