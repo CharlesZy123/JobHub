@@ -26,7 +26,7 @@ $result = mysqli_query($conn, $query);
                                     <div class="small-box text-center <?= $bgColors[$colorIndex++] ?>">
                                         <div class="inner pt-3" style="cursor: default;">
                                             <h3 class="text-white"><?= $test['name'] ?></h3>
-                                            <p>Description here</p>
+                                            <p><?= $test['description'] ?></p>
                                         </div>
                                         <a href="redirect?id=<?= $test['id']?>" class="small-box-footer">Continue <i class="fas fa-arrow-circle-right"></i></a>
                                     </div>
